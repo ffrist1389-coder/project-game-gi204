@@ -1,11 +1,13 @@
 using UnityEngine;
+using TMPro;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class ScoreManager : MonoBehaviour
 {
-    public static GameManager instance;
+    public static ScoreManager instance;
+    public TextMeshProUGUI scoreText;
 
-    public int score = 0;
+    private int score = 0;
     private int totalTargets;
 
     void Awake()
@@ -16,21 +18,22 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         totalTargets = GameObject.FindGameObjectsWithTag("Target").Length;
+        UpdateScoreText();
     }
 
     public void AddScore()
     {
         score++;
+        UpdateScoreText();
 
         if (score >= totalTargets)
         {
-            WinGame();
+            SceneManager.LoadScene("CreditScene");
         }
     }
 
-    void WinGame()
+    void UpdateScoreText()
     {
-        Debug.Log("YOU WIN!");
-        SceneManager.LoadScene("CreditScene");
+        scoreText.text = "Score: " + score;
     }
 }
