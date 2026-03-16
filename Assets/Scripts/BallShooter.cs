@@ -27,6 +27,8 @@ public class BallShooter : MonoBehaviour
         {
             float force = mass * acceleration;
             rb.AddForce(transform.forward * force, ForceMode.Impulse);
+
+            rb.AddTorque(Vector3.up * 10f, ForceMode.Impulse);
         }
     }
 }

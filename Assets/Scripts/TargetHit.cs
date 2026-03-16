@@ -6,6 +6,7 @@ public class TargetHit : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Ball"))
         {
+            GameManager.AddScore();
             Destroy(gameObject);
         }
     }
